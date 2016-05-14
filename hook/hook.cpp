@@ -5,8 +5,8 @@
 #pragma comment(lib, "detours.lib")
 #pragma comment(lib, "ws2_32.lib")
 
-#define MASTERLIST_HOST_DEFAULT "masterlist.freeho.st"
-#define MASTERLIST_PATH_DEFAULT "/sa-mp_masterlist/masterlist.txt"
+#define MASTERLIST_HOST_DEFAULT "monitor.teamshrimp.com"
+#define MASTERLIST_PATH_DEFAULT "/list/masterlist.txt"
 
 int (WINAPI *pSend)(SOCKET s, const char* buf, int len, int flags) = send;
 int WINAPI HOOK_send(SOCKET s, const char* buf, int len, int flags);
