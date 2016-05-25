@@ -5,7 +5,7 @@ define('MASTERLIST_QUERY_LINK', 'http://monitor.sacnr.com/ajax/get_server_list.p
 define('MASTERLIST_FILE', 'masterlist.txt');
 define('MASTERLIST_FILE_TEMP', 'masterlist.tmp');
 define('LOG_EXECTIME_FILE', 'execinfo.log');
-define('EXEC_TIMELIMIT_MINUTES', 2);
+define('EXEC_TIMELIMIT_MINUTES', 3);
 
 function get_string_between($string, $start, $end, $offset)
 {
@@ -19,10 +19,9 @@ function get_string_between($string, $start, $end, $offset)
 
 set_time_limit(EXEC_TIMELIMIT_MINUTES*60);
 $start_time = microtime(true);
-$master = fopen(MASTERLIST_FILE_TEMP, 'w');
 $i = 0;
 $servers = 0;
-
+$iplist = [];
 while(1)
 {
 	$page = file_get_contents(MASTERLIST_QUERY_LINK.$i);
@@ -35,11 +34,16 @@ while(1)
 	{
 		$ip = get_string_between($page, '<a href="samp://', '">', $pos);
 		$pos = strpos($page, '<a href="samp://', $pos + 1);
-		fwrite($master, $ip."\n");
+		$iplist[] = $ip;
 		$servers++;
 	}
 	$i += MASTERLIST_SERVERS_PER_PAGE;
+	sleep(1);
 }
+
+shuffle($iplist);
+$master = fopen(MASTERLIST_FILE_TEMP, 'w'); 
+fwrite($master, implode("\n", $iplist));
 fclose($master);
 
 if($servers >= MIN_SERVERS_FOR_REWRITE) 
