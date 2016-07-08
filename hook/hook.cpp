@@ -5,7 +5,7 @@
 #pragma comment(lib, "detours.lib")
 #pragma comment(lib, "ws2_32.lib")
 
-#define MASTERLIST_HOST_DEFAULT "monitor.teamshrimp.com"
+#define MASTERLIST_HOST_DEFAULT "monitor.sacnr.com"
 #define MASTERLIST_PATH_DEFAULT "/list/masterlist.txt"
 
 int (WINAPI *pSend)(SOCKET s, const char* buf, int len, int flags) = send;
