@@ -25,3 +25,7 @@ You can register your server by following these [steps](http://monitor.sacnr.com
 
 ## How can I contribute?
 An **auto injector** would make this project more user-friendly because (at this moment) the DLL is injected into SA-MP process by a helper executable `masterlist_fix.exe` which means that the user has to open THAT executable instead of the original executable `samp.exe`.
+
+
+## Contributors:
+[nickdodd25](https://github.com/nickdodd25) - hosted the masterlist for v1.0.1 release
