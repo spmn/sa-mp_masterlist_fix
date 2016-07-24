@@ -3,6 +3,7 @@
 #pragma comment(lib, "ws2_32.lib")
 #include <Shlobj.h>
 #include <iostream>
+#include <tchar.h>
 
 void InitializeFix();
 void GetRidOfMe();
@@ -32,7 +33,7 @@ WRAPPER_GENFUNC(VerQueryValueW)
 
 bool InitializeWrapper()
 {
-	char szDLLPath[MAX_PATH];
+	TCHAR szDLLPath[MAX_PATH];
 
 	if (SUCCEEDED(SHGetFolderPath(NULL,
 		CSIDL_SYSTEM,
@@ -40,7 +41,7 @@ bool InitializeWrapper()
 		0,
 		szDLLPath)))
 	{
-		strcat_s(szDLLPath, MAX_PATH, "\\version.dll");
+		_tcscat_s(szDLLPath, MAX_PATH, TEXT("\\version.dll"));
 
 		HMODULE hModVersion = LoadLibrary(szDLLPath);
 #define WRAPPER_FUNC(name) orig_##name = GetProcAddress(hModVersion, ###name);
@@ -64,7 +65,7 @@ bool InitializeWrapper()
 	}
 	else
 	{
-		MessageBox(NULL, "Failed to get your origin dll.\nPlease report this issue on github,\nand remove version.dll from your GTA:SA Folder until the problem is solved.", "Whoopsie", MB_OK);
+		MessageBox(NULL, TEXT("Failed to get your origin dll.\nPlease report this issue on GitHub,\nand remove version.dll from your GTA:SA folder until the problem is solved."), TEXT("Whoopsie"), MB_OK);
 	}
 
 	return false;

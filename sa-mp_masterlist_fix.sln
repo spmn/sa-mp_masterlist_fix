@@ -1,9 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C++ Express 2010
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "injector", "injector\injector.vcxproj", "{0F91D87C-7ED2-4D04-A419-6199253A477B}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "hook", "hook\hook.vcxproj", "{AC1F8B56-A267-43D0-8036-0F3CBCBB374F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sa-mp_masterlist_fix", "sa-mp_masterlist_fix\sa-mp_masterlist_fix.vcxproj", "{AC1F8B56-A267-43D0-8036-0F3CBCBB374F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +9,6 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0F91D87C-7ED2-4D04-A419-6199253A477B}.Debug|Win32.ActiveCfg = Debug|Win32
-		{0F91D87C-7ED2-4D04-A419-6199253A477B}.Debug|Win32.Build.0 = Debug|Win32
-		{0F91D87C-7ED2-4D04-A419-6199253A477B}.Release|Win32.ActiveCfg = Release|Win32
-		{0F91D87C-7ED2-4D04-A419-6199253A477B}.Release|Win32.Build.0 = Release|Win32
 		{AC1F8B56-A267-43D0-8036-0F3CBCBB374F}.Debug|Win32.ActiveCfg = Debug|Win32
 		{AC1F8B56-A267-43D0-8036-0F3CBCBB374F}.Debug|Win32.Build.0 = Debug|Win32
 		{AC1F8B56-A267-43D0-8036-0F3CBCBB374F}.Release|Win32.ActiveCfg = Release|Win32
