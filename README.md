@@ -24,5 +24,5 @@ You can register your server by following these [steps](http://monitor.sacnr.com
 
 
 ## Contributors:
-[MyU](https://github.com/myudev) - wrote the code for the auto injector used in v1.1.0 and subsequent releases
+[MyU](https://github.com/myudev) - wrote the code for the auto injector used in v1.1.0 and subsequent releases <br />
 [nickdodd25](https://github.com/nickdodd25) - hosted the masterlist for v1.0.1 release
