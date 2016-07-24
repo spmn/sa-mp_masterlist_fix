@@ -4,9 +4,9 @@ Fixes the infamous SA-MP internet tab bug.
 
 
 ## Installation:
-* Download the latest package from the [releases page](https://github.com/spmn/sa-mp_masterlist_fix/releases);
-* Unpack it into SA-MP directory where `samp.exe` is located;
-* Run `masterlist_fix.exe`
+* Download the latest `version.dll` from the [releases page](https://github.com/spmn/sa-mp_masterlist_fix/releases);
+* Copy `version.dll` to SA-MP directory where `samp.exe` is located;
+* Run `samp.exe`
 
 
 ## How does it work?
@@ -23,9 +23,6 @@ Most probably your server is not registered on the [SACNR Monitor](http://monito
 You can register your server by following these [steps](http://monitor.sacnr.com/api.html). In the next hours the server should appear on internet tab.
 
 
-## How can I contribute?
-An **auto injector** would make this project more user-friendly because (at this moment) the DLL is injected into SA-MP process by a helper executable `masterlist_fix.exe` which means that the user has to open THAT executable instead of the original executable `samp.exe`.
-
-
 ## Contributors:
+[MyU](https://github.com/myudev) - wrote the code for the auto injector used in v1.1.0 and subsequent releases
 [nickdodd25](https://github.com/nickdodd25) - hosted the masterlist for v1.0.1 release
