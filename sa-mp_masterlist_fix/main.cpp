@@ -65,7 +65,7 @@ bool InitializeWrapper()
 	}
 	else
 	{
-		MessageBox(NULL, TEXT("Failed to get your origin dll.\nPlease report this issue on GitHub,\nand remove version.dll from your GTA:SA folder until the problem is solved."), TEXT("Whoopsie"), MB_OK);
+		MessageBox(NULL, TEXT("Failed to get your origin dll.\nPlease report this issue on GitHub,\nand remove version.dll from your SA-MP folder until the problem is solved."), TEXT("Whoopsie"), MB_OK);
 	}
 
 	return false;
