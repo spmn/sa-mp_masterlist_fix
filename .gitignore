@@ -30,6 +30,8 @@
 # Visual Studio Stuff
 *.sdf
 *.opensdf
+*.vcxproj.user
 Debug/
 Release/
 ipch/
+.vs/
