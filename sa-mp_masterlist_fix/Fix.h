@@ -38,5 +38,6 @@ private:
     SOCKET m_socket;
     bool m_fullyInit;
 
-    static constexpr char kDefaultMasterlist[] = "lists.sa-mp.com";
+    static constexpr char kDefaultMasterlistHost[] = "lists.sa-mp.com";
+    static constexpr short kDefaultMasterlistPort = 80;
 };

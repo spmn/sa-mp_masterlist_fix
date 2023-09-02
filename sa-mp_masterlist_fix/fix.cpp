@@ -25,7 +25,7 @@ struct hostent* WINAPI Fix::gethostbyname(const char* cp)
 {
     auto& self = GetInstance();
 
-    if (!strncmp(cp, kDefaultMasterlist, std::string::traits_type::length(kDefaultMasterlist)))
+    if (!strncmp(cp, kDefaultMasterlistHost, std::string::traits_type::length(kDefaultMasterlistHost)))
     {
         const auto& newHostname = self.GetEndpointForCurrentTab().m_hostname;
         if (!newHostname.empty())
@@ -44,10 +44,13 @@ struct hostent* WINAPI Fix::gethostbyname(const char* cp)
 
 int WINAPI Fix::connect(SOCKET s, const sockaddr* name, int namelen)
 {
+    static short defaultMasterlistPortNetworkOrder = ::htons(kDefaultMasterlistPort);
     auto& self = GetInstance();
     auto nameIpv4 = reinterpret_cast<sockaddr_in*>(const_cast<sockaddr*>(name));
 
-    if (nameIpv4 && namelen == sizeof(*nameIpv4) && self.m_resolvedAddress.S_un.S_addr == nameIpv4->sin_addr.S_un.S_addr)
+    if (nameIpv4 && namelen == sizeof(*nameIpv4) && nameIpv4->sin_family == AF_INET
+        && nameIpv4->sin_port == defaultMasterlistPortNetworkOrder
+        && self.m_resolvedAddress.S_un.S_addr == nameIpv4->sin_addr.S_un.S_addr)
     {
         if (int newPort = self.GetEndpointForCurrentTab().m_port)
         {
