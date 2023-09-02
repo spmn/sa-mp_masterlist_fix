@@ -13,6 +13,8 @@ public:
 
     ServerBrowser();
 
+    bool ScanSignatures();
+
     const std::string& GetVersion() const { return m_version; }
     Tab GetTab() const { return m_tab ? *m_tab : Tab::Unknown; }
     bool IsSupportedProcess() const { return !m_version.empty() && m_tab; }

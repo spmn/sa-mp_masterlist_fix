@@ -20,14 +20,20 @@ namespace
 ServerBrowser::ServerBrowser()
     : m_tab(nullptr)
 {
+}
+
+bool ServerBrowser::ScanSignatures()
+{
     urmem::sig_scanner scanner;
     if (!scanner.init(urmem::get_func_addr(::GetModuleHandleW(nullptr))))
     {
-        return;
+        return false;
     }
 
     m_version = GetVersion(scanner);
     m_tab = GetTabAddress(scanner);
+
+    return IsSupportedProcess();
 }
 
 std::string ServerBrowser::GetVersion(const urmem::sig_scanner& scanner)

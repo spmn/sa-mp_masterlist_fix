@@ -65,7 +65,7 @@ BOOL WINAPI DllMain(HINSTANCE, DWORD dwReason, LPVOID)
         OutputDebugStringA("Loaded");
 		if (InitializeWrapper())
 		{
-			Fix::GetInstance().Initialize();
+			Fix::GetInstance().EarlyInitialize();
 		}
 		else
 		{

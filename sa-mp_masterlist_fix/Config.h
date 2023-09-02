@@ -23,6 +23,7 @@ class Configuration
 public:
     Configuration();
 
+    bool Load();
     bool IsValid() const { return m_isValid; }
     const MasterlistEndpoint& GetInternetEndpoint() const { return m_internetEndpoint; }
     const MasterlistEndpoint& GetHostedEndpoint() const { return m_hostedEndpoint; }
@@ -34,8 +35,6 @@ private:
 
     static std::filesystem::path GetConfigFilePath();
     static std::string_view GetDefaultConfigContent();
-
-    void Load();
 
     static constexpr wchar_t kConfigFile[] = L"sa-mp_masterlist_fix.json";
 };

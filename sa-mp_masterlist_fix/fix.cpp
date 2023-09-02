@@ -5,7 +5,11 @@
 FARPROC WINAPI Fix::GetProcAddress(HMODULE hModule, LPCSTR lpProcName)
 {
     auto& self = GetInstance();
-    urmem::hook::raii raii(self.m_procGetterHook);
+    if (!self.Initialize())
+    {
+        self.m_procGetterHook.disable();
+        return ::GetProcAddress(hModule, lpProcName);
+    }
 
     auto it = self.m_hooks.find(lpProcName);
     if (it != self.m_hooks.end())
@@ -13,6 +17,7 @@ FARPROC WINAPI Fix::GetProcAddress(HMODULE hModule, LPCSTR lpProcName)
         return it->second;
     }
 
+    urmem::hook::raii raii(self.m_procGetterHook);
     return ::GetProcAddress(hModule, lpProcName);
 }
 
@@ -137,6 +142,7 @@ Fix::Fix()
     })
     , m_resolvedAddress{}
     , m_socket{ INVALID_SOCKET }
+    , m_fullyInit{ false }
 {
 }
 
@@ -146,24 +152,38 @@ Fix& Fix::GetInstance()
     return instance;
 }
 
+void Fix::EarlyInitialize()
+{
+    // We do a bit of early initialization here because scanning the executable at this point
+    // would probably fail since it has not yet been self-unpacked
+    // The actual initialization is done the first time GetProcAddress gets called
+
+    urmem::address_t realGetProcAddress = urmem::get_func_addr(::GetProcAddress);
+    urmem::address_t hookGetProcAddress = urmem::get_func_addr(Fix::GetProcAddress);
+
+    m_procGetterHook.install(realGetProcAddress, hookGetProcAddress);
+}
+
 bool Fix::Initialize()
 {
-    if (!m_browser.IsSupportedProcess())
+    if (m_fullyInit)
+    {
+        return true;
+    }
+
+    if (!m_config.Load())
+    {
+        assert(false && "Invalid configuration");
+        return false;
+    }
+
+    if (!m_browser.ScanSignatures())
     {
         // We're injected into a random process or in an unsupported SA-MP server browser version
         // Either way, we should not try to mess with the current process any longer
         return false;
     }
 
-    if (!m_config.IsValid())
-    {
-        assert(false && "Invalid configuration");
-        return false;
-    }
-
-    urmem::address_t realGetProcAddress = urmem::get_func_addr(::GetProcAddress);
-    urmem::address_t hookGetProcAddress = urmem::get_func_addr(Fix::GetProcAddress);
-
-    m_procGetterHook.install(realGetProcAddress, hookGetProcAddress);
+    m_fullyInit = true;
     return true;
 }

@@ -7,7 +7,7 @@ class Fix
 {
 public:
     static Fix& GetInstance();
-    bool Initialize();
+    void EarlyInitialize();
 
 private:
     Fix();
@@ -15,6 +15,8 @@ private:
     Fix(Fix&&) = delete;
     void operator=(const Fix&) = delete;
     void operator=(Fix&&) = delete;
+
+    bool Initialize();
 
     // Hooked functions
     static FARPROC WINAPI GetProcAddress(HMODULE hModule, LPCSTR lpProcName);
@@ -34,6 +36,7 @@ private:
 
     in_addr m_resolvedAddress;
     SOCKET m_socket;
+    bool m_fullyInit;
 
     static constexpr char kDefaultMasterlist[] = "lists.sa-mp.com";
 };

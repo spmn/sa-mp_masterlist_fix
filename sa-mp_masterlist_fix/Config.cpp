@@ -6,7 +6,6 @@ EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 Configuration::Configuration()
     : m_isValid(false)
 {
-    Load();
 }
 
 std::filesystem::path Configuration::GetConfigFilePath()
@@ -38,7 +37,7 @@ std::string_view Configuration::GetDefaultConfigContent()
     return std::string_view{ jsonContent, jsonSize };
 }
 
-void Configuration::Load()
+bool Configuration::Load()
 {
     auto configPath = GetConfigFilePath();
     auto defaultConfigContent = GetDefaultConfigContent();
@@ -72,6 +71,7 @@ void Configuration::Load()
     }
 
     m_isValid = m_internetEndpoint.IsValid() && m_hostedEndpoint.IsValid();
+    return m_isValid;
 }
 
 MasterlistEndpoint::MasterlistEndpoint(const std::string& url)
