@@ -62,11 +62,13 @@ bool Configuration::Load()
     // Populate any invalid setting with the equivalent from the default config
     if (!m_internetEndpoint.IsValid())
     {
+        ::OutputDebugStringW(L"[SA-MP Masterlist Fix] Invalid internet endpoint; falling back to the default");
         defaultConfig["endpoints"]["internet"].get_to(m_internetEndpoint);
     }
 
     if (!m_hostedEndpoint.IsValid())
     {
+        ::OutputDebugStringW(L"[SA-MP Masterlist Fix] Invalid hosted endpoint; falling back to the default");
         defaultConfig["endpoints"]["hosted"].get_to(m_hostedEndpoint);
     }
 

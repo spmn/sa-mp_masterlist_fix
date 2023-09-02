@@ -62,7 +62,8 @@ BOOL WINAPI DllMain(HINSTANCE, DWORD dwReason, LPVOID)
 {
 	if (dwReason == DLL_PROCESS_ATTACH)
 	{	
-        OutputDebugStringA("Loaded");
+        ::OutputDebugStringW(L"[SA-MP Masterlist Fix] Injected");
+
 		if (InitializeWrapper())
 		{
 			Fix::GetInstance().EarlyInitialize();

@@ -54,9 +54,13 @@ int WINAPI Fix::connect(SOCKET s, const sockaddr* name, int namelen)
     {
         if (int newPort = self.GetEndpointForCurrentTab().m_port)
         {
-            nameIpv4->sin_port = ::htons(static_cast<short>(newPort));
+            if (self.m_socket != INVALID_SOCKET)
+            {
+                ::OutputDebugStringW(L"[SA-MP Masterlist Fix] New socket opened without closing the previous one (must never happen; report it on GitHub pls)");
+                assert(false);
+            }
 
-            assert(self.m_socket == INVALID_SOCKET && "New socket opened without closing the previous one");
+            nameIpv4->sin_port = ::htons(static_cast<short>(newPort));
             self.m_socket = s;
         }
     }
@@ -107,6 +111,9 @@ MasterlistEndpoint Fix::GetEndpointForCurrentTab() const
     case ServerBrowser::Tab::Hosted:
         return m_config.GetHostedEndpoint();
     }
+
+    ::OutputDebugStringW(L"[SA-MP Masterlist Fix] Invalid tab (should never happen; report it on GitHub pls)");
+    assert(false);
 
     return MasterlistEndpoint{};
 }
@@ -163,6 +170,7 @@ void Fix::EarlyInitialize()
 
     if (!m_config.Load())
     {
+        ::OutputDebugStringW(L"[SA-MP Masterlist Fix] Invalid configuration (must never happen; report it on GitHub pls)");
         assert(false && "Invalid configuration");
         return;
     }
@@ -184,8 +192,11 @@ bool Fix::Initialize()
     {
         // We're injected into a random process or in an unsupported SA-MP server browser version
         // Either way, we should not try to mess with the current process any longer
+        ::OutputDebugStringW(L"[SA-MP Masterlist Fix] Signature scanning failed");
         return false;
     }
+
+    ::OutputDebugStringW(L"[SA-MP Masterlist Fix] Fully initialized");
 
     m_fullyInit = true;
     return true;
