@@ -28,6 +28,7 @@
 *.app
 
 # Visual Studio Stuff
+*.aps
 *.sdf
 *.opensdf
 *.vcxproj.user

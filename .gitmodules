@@ -1,0 +1,6 @@
+[submodule "deps/urmem"]
+	path = deps/urmem
+	url = https://github.com/katursis/urmem.git
+[submodule "deps/json"]
+	path = deps/json
+	url = https://github.com/nlohmann/json.git

@@ -1,0 +1,14 @@
+{
+    "comments": {
+        "protocol": "HTTPS is not supported! Endpoints must be accessible over HTTP.",
+        "variable": "$(version) is replaced with the SA-MP client version (eg: 0.3.7, 0.3.DL etc)"
+    },
+    "endpoints": {
+        "internet": {
+            "url": "http://gateway.markski.ar:42069/api/GetMasterlist?version=$(version)"
+        },
+        "hosted": {
+            "url": "http://lists.sa-mp.com/$(version)/hosted"
+        }
+    }
+}
