@@ -161,6 +161,12 @@ void Fix::EarlyInitialize()
     // would probably fail since it has not yet been self-unpacked
     // The actual initialization is done the first time GetProcAddress gets called
 
+    if (!m_config.Load())
+    {
+        assert(false && "Invalid configuration");
+        return;
+    }
+
     urmem::address_t realGetProcAddress = urmem::get_func_addr(::GetProcAddress);
     urmem::address_t hookGetProcAddress = urmem::get_func_addr(Fix::GetProcAddress);
 
@@ -172,12 +178,6 @@ bool Fix::Initialize()
     if (m_fullyInit)
     {
         return true;
-    }
-
-    if (!m_config.Load())
-    {
-        assert(false && "Invalid configuration");
-        return false;
     }
 
     if (!m_browser.ScanSignatures())
