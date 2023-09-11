@@ -5,7 +5,7 @@
     },
     "endpoints": {
         "internet": {
-            "url": "http://gateway.markski.ar:42069/api/GetMasterlist?version=$(version)"
+            "url": "http://sam.markski.ar/api/GetMasterlist?version=$(version)"
         },
         "hosted": {
             "url": "http://lists.sa-mp.com/$(version)/hosted"
