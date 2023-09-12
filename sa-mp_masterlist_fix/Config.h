@@ -24,12 +24,10 @@ public:
     Configuration();
 
     bool Load();
-    bool IsValid() const { return m_isValid; }
     const MasterlistEndpoint& GetInternetEndpoint() const { return m_internetEndpoint; }
     const MasterlistEndpoint& GetHostedEndpoint() const { return m_hostedEndpoint; }
 
 private:
-    bool m_isValid;
     MasterlistEndpoint m_internetEndpoint;
     MasterlistEndpoint m_hostedEndpoint;
 

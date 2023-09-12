@@ -4,7 +4,6 @@
 EXTERN_C IMAGE_DOS_HEADER __ImageBase;
 
 Configuration::Configuration()
-    : m_isValid(false)
 {
 }
 
@@ -72,8 +71,7 @@ bool Configuration::Load()
         defaultConfig["endpoints"]["hosted"].get_to(m_hostedEndpoint);
     }
 
-    m_isValid = m_internetEndpoint.IsValid() && m_hostedEndpoint.IsValid();
-    return m_isValid;
+    return m_internetEndpoint.IsValid() && m_hostedEndpoint.IsValid();
 }
 
 MasterlistEndpoint::MasterlistEndpoint(const std::string& url)
@@ -116,13 +114,15 @@ bool MasterlistEndpoint::IsValid() const
 
 void from_json(const json& j, MasterlistEndpoint& endpoint)
 {
+    std::string url;
+
     try
     {
-        std::string url;
         j.at("url").get_to(url);
-        endpoint = MasterlistEndpoint(url);
     }
     catch (const json::exception&)
     {
     }
+
+    endpoint = MasterlistEndpoint(url);
 }
