@@ -2,11 +2,11 @@
 #include "Fix.h"
 
 #define WRAPPER_GENFUNC(name) \
-	FARPROC orig_##name; \
-	__declspec(naked) void _##name() \
-	{ \
-		__asm jmp[orig_##name] \
-	}
+    FARPROC orig_##name; \
+    __declspec(naked) void _##name() \
+    { \
+        __asm jmp[orig_##name] \
+    }
 
 WRAPPER_GENFUNC(GetFileVersionInfoA)
 WRAPPER_GENFUNC(GetFileVersionInfoByHandle)
@@ -26,7 +26,7 @@ WRAPPER_GENFUNC(VerQueryValueW)
 
 bool InitializeWrapper()
 {
-	wchar_t szDLLPath[MAX_PATH];
+    wchar_t szDLLPath[MAX_PATH];
 
     if (::GetSystemDirectoryW(szDLLPath, ARRAYSIZE(szDLLPath)))
     {
@@ -52,26 +52,26 @@ bool InitializeWrapper()
             WRAPPER_FUNC(VerQueryValueW);
             return true;
         }
-	}
+    }
 
     ::MessageBoxW(NULL, L"Failed to get your origin dll.\nPlease report this issue on GitHub,\nand remove version.dll from your SA-MP folder until the problem is solved.", L"Whoopsie", MB_OK);
-	return false;
+    return false;
 }
 
 BOOL WINAPI DllMain(HINSTANCE, DWORD dwReason, LPVOID)
 {
-	if (dwReason == DLL_PROCESS_ATTACH)
-	{	
+    if (dwReason == DLL_PROCESS_ATTACH)
+    {
         ::OutputDebugStringW(L"[SA-MP Masterlist Fix] Injected");
 
-		if (InitializeWrapper())
-		{
-			Fix::GetInstance().EarlyInitialize();
-		}
-		else
-		{
-			::TerminateProcess(::GetCurrentProcess(), 0);
-		}
-	}
-	return TRUE;
+        if (InitializeWrapper())
+        {
+            Fix::GetInstance().EarlyInitialize();
+        }
+        else
+        {
+            ::TerminateProcess(::GetCurrentProcess(), 0);
+        }
+    }
+    return TRUE;
 }

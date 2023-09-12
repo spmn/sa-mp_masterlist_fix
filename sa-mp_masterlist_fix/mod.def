@@ -1,18 +1,18 @@
 LIBRARY version.dll
 
 EXPORTS
-	GetFileVersionInfoA        = _GetFileVersionInfoA @1
-	GetFileVersionInfoByHandle = _GetFileVersionInfoByHandle @2
-	GetFileVersionInfoExW      = _GetFileVersionInfoExW @3
-	GetFileVersionInfoSizeA    = _GetFileVersionInfoSizeA @4
-	GetFileVersionInfoSizeExW  = _GetFileVersionInfoSizeExW @5
-	GetFileVersionInfoSizeW    = _GetFileVersionInfoSizeW @6
-	GetFileVersionInfoW        = _GetFileVersionInfoW @7
-	VerFindFileA               = _VerFindFileA @8
-	VerFindFileW               = _VerFindFileW @9
-	VerInstallFileA            = _VerInstallFileA @10
-	VerInstallFileW            = _VerInstallFileW @11
-	VerLanguageNameA           = _VerLanguageNameA @12
-	VerLanguageNameW           = _VerLanguageNameW @13
-	VerQueryValueA             = _VerQueryValueA @14
-	VerQueryValueW             = _VerQueryValueW @15
+    GetFileVersionInfoA        = _GetFileVersionInfoA @1
+    GetFileVersionInfoByHandle = _GetFileVersionInfoByHandle @2
+    GetFileVersionInfoExW      = _GetFileVersionInfoExW @3
+    GetFileVersionInfoSizeA    = _GetFileVersionInfoSizeA @4
+    GetFileVersionInfoSizeExW  = _GetFileVersionInfoSizeExW @5
+    GetFileVersionInfoSizeW    = _GetFileVersionInfoSizeW @6
+    GetFileVersionInfoW        = _GetFileVersionInfoW @7
+    VerFindFileA               = _VerFindFileA @8
+    VerFindFileW               = _VerFindFileW @9
+    VerInstallFileA            = _VerInstallFileA @10
+    VerInstallFileW            = _VerInstallFileW @11
+    VerLanguageNameA           = _VerLanguageNameA @12
+    VerLanguageNameW           = _VerLanguageNameW @13
+    VerQueryValueA             = _VerQueryValueA @14
+    VerQueryValueW             = _VerQueryValueW @15
