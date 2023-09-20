@@ -11,10 +11,14 @@ FARPROC WINAPI Fix::GetProcAddress(HMODULE hModule, LPCSTR lpProcName)
         return ::GetProcAddress(hModule, lpProcName);
     }
 
-    auto it = self.m_hooks.find(lpProcName);
-    if (it != self.m_hooks.end())
+    // Make sure we are dealing with a string, not a DLL ordinal
+    if (HIWORD(lpProcName))
     {
-        return it->second;
+        auto it = self.m_hooks.find(lpProcName);
+        if (it != self.m_hooks.end())
+        {
+            return it->second;
+        }
     }
 
     urmem::hook::raii raii(self.m_procGetterHook);
