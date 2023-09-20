@@ -4,7 +4,7 @@ Master of your... internet tab!
 
 
 ## Installation:
-* Download the latest `version.dll` from the [releases page](https://github.com/spmn/sa-mp_masterlist_fix/releases);
+* Download the latest `version.dll` from the [releases page](https://github.com/spmn/sa-mp_masterlist_fix/releases/latest);
 * Copy `version.dll` to your SA-MP directory (where `samp.exe` is located);
 * Run `samp.exe`;
 * *Optional:* Tweak the masterlist servers (`My Documents/GTA San Andreas User Files/SAMP/sa-mp_masterlist_fix.json`)
